@@ -1,7 +1,10 @@
-"use client";
-import styles from "./page.module.css";
-import Homepage from "./components/Homepage/Homepage";
+
+"use client"
+
+import React from 'react';
+// import QuizPage from './QuizPage/page';
 
 export default function Home() {
-  return <Homepage />;
-}
+return (<h1>Hello</h1>)
+
+} 
