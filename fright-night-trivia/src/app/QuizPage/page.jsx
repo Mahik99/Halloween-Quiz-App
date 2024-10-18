@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import questions from "./data.json"; // Make sure data.json is in the correct format
-const QuizGame = () => {
+export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
@@ -47,5 +47,4 @@ const QuizGame = () => {
       )}
     </div>
   );
-};
-export default QuizGame;
+}
