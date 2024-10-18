@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import styles from "./Homepage.module.css";
+import SoundPlayer from "./sound.jsx";
 
 export default function Homepage() {
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function Homepage() {
         height={120}
       />
       <button className={styles.button}>
+        <SoundPlayer />
         <strong>Ready, Set, BOO!</strong>
       </button>
     </section>
