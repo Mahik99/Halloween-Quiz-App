@@ -1,0 +1,90 @@
+[
+    {
+        "question": "What date is Halloween traditionally celebrated around the world?",
+        "answer_options": ["October 31st", "October 30th", "October 29th", "November 1st"],
+        "correct_answer": "October 31st",
+        "level": "easy"
+    },
+
+     {
+        "question": "What vegetable do people often carve into a Jack-o'-Lantern?",
+        "answer_options": ["Watermelon", "Pumpkin", "Butternut Squash", "Turnip"],
+        "correct_answer": "Pumpkin",
+        "level" : "easy"
+    },
+
+    {
+        "question": "What is the popular Halloween phrase that children say before receiving candy?",
+        "answer_options": ["Halloween Spooks", "Boo!", "Trick or Treat", "Candy Please!"],
+        "correct_answer": "Trick or Treat",
+        "level" : "easy"
+    },
+
+    {
+        "question": "Who wrote the famous novel 'Frankenstein'?",
+        "answer_options": ["Edgar Allan Poe", "Bram Stoker", "H.P. Lovecraft", "Mary Shelley"],
+        "correct_answer": "Mary Shelley",
+        "level" : "easy"
+    },
+
+
+    {
+        "question": "Which classic horror movie features a serial killer named Michael Myers?",
+        "answer_options": ["Friday the 13th", "the Texas Chainsaw Massacre", "A Nightmare on Elm Street", "Halloween"],
+        "correct_answer": "Halloween",
+        "level": "medium"
+    },
+
+     {
+        "question": "What candy is known for its colorful, sugary coating and is often associated with Halloween?",
+        "answer_options": ["M&M's", "Skittles", "Reese's Pieces", "Smarties"],
+        "correct_answer": "Skittles",
+        "level": "medium"
+    },
+
+    {
+        "question": "Where did the legend of the Headless Horseman originate?",
+        "answer_options": ["England", "Ireland", "Sleepy Hollow", "Transylvania"],
+        "correct_answer": "Sleepy Hollow",
+        "level": "medium"
+    },
+
+     {
+        "question": "In what country did the tradition of dressing up in costumes for Halloween originate?",
+        "answer_options": ["United States", "Italy", "Germany", "Ireland"],
+        "correct_answer": "Ireland",
+        "level": "medium"
+    },
+
+
+    {
+        "question": "What werewolf movie franchise became a sensation in the early 2000s?",
+        "answer_options": ["Van Helsing",  "Underworld", "The Twilight Saga", "The Howling"],
+        "correct_answer": "The Twilight Saga",
+        "level": "medium"
+    },
+
+    {
+        "question": "What is the name of the iconic vampire in Bram Stoker's novel 'Dracula'?",
+        "answer_options": ["Count Chocula", "Count von Count", "Count Dracula", "Count von Count"],
+        "correct_answer": "Count Dracula",
+        "level": "easy"
+    },
+
+
+
+
+    {
+        "question": "Which ancient Celtic festival is believed to have inspired Halloween?",
+        "answer_options": ["Samhain", "Beltane", "Lughnasadh", "Imbolc"],
+        "correct_answer": "Samhain",
+        "level": "hard"
+    },
+
+     {
+        "question": "In Mexico, what holiday honors deceased loved ones and is celebrated around the same time as Halloween?",
+        "answer_options": ["Cinco de Mayo", " Dia de los Muertos (Day of the Dead)", "Las Posadas", "El Grito de Dolores"],
+        "correct_answer": "Dia de los Muertos (Day of the Dead)",
+        "level": "hard"
+    }
+]
