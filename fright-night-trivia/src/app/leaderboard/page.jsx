@@ -8,7 +8,6 @@ const supabase = createClient('https://drtiadnwtwtpurixjyss.supabase.co', 'eyJhb
 
 export default function Home() {
   const [dbData, setDbData] = useState([]);
-  const [name, setName] = useState('');
   const [score, setScore] = useState('');
   const [questions, setQuestions] = useState([]);
 
@@ -48,23 +47,23 @@ export default function Home() {
     fetchQuestions();
   }, []);
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+  // const handleClick = async (e) => {
+  //   e.preventDefault();
     
-    try {
-      const { data, error } = await supabase
-        .from('HalloweenLeaderBoard')
-        .insert([{ Name: name, Score: score }])
-        .select();
+  //   try {
+  //     const { data, error } = await supabase
+  //       .from('HalloweenLeaderBoard')
+  //       .insert([{ Name: name, Score: score }])
+  //       .select();
       
-      if (error) throw error;
-      console.log('Inserted data:', data);
+  //     if (error) throw error;
+  //     console.log('Inserted data:', data);
 
-      fetchData();
-    } catch (error) {
-      console.error('Error inserting data:', error);
-    }
-  };
+  //     fetchData();
+  //   } catch (error) {
+  //     console.error('Error inserting data:', error);
+  //   }
+  // };
 
   return (
     <div>
@@ -79,7 +78,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="form">
+      {/* <div className="form">
         <form onSubmit={handleClick}>
           <label>
             Name:
@@ -106,6 +105,7 @@ export default function Home() {
       </div>
 
       <button onClick={fetchData}>Refresh</button>
+    </div> */}
     </div>
   );
 }
