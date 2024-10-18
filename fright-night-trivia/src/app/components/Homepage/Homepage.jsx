@@ -19,17 +19,18 @@ export default function Homepage() {
   }, []);
 
   return (
-    <div className="container">
-      <section className={styles.section}>
-        <h2 id="ghostText" className={styles.h2}></h2>
-        <Image
-          src="/Images/pumpkin.png"
-          alt="pumpkin"
-          width={120}
-          height={120}
-        />
-        <button className={styles.button}>Ready, Set, BOO!</button>
-      </section>
-    </div>
+    <section className={styles.section}>
+      <h2 id="ghostText" className={styles.h2}></h2>
+      <Image
+        className="pumpkinImage"
+        src="/Images/pumpkin.png"
+        alt="pumpkin"
+        width={120}
+        height={120}
+      />
+      <button className={styles.button}>
+        <strong>Ready, Set, BOO!</strong>
+      </button>
+    </section>
   );
 }

@@ -1,23 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap");
-.container {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Caveat Brush", cursive;
-}
 
 .section {
   position: relative;
   height: 100vh;
   background: #1c0101;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
 .h2 {
-  font-size: 6rem;
+  font-size: 2rem;
   text-transform: uppercase;
   color: #f00;
   cursor: default;
@@ -33,4 +28,21 @@
   filter: blur(20px);
   opacity: 0;
   transform: scale(2) translateY(-50%);
+}
+
+.button {
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 15px;
+  font-size: 1rem;
+  background-color: #1c0101;
+  color: red;
+  transition: background-color 0.5s;
+  border-radius: 1rem;
+  border: none;
+}
+
+.button:hover {
+  background-color: red;
+  color: black;
 }
