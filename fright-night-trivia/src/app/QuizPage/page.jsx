@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import questions from "./data.json"; // Make sure data.json is in the correct format
 import { createClient } from '@supabase/supabase-js';
 import Link from "next/link";
+import styles from "./page.module.css";
 
 export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -10,6 +11,7 @@ export default function QuizPage() {
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [name, setName] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [rank, setRank] = useState('')
 
   const supabase = createClient('https://drtiadnwtwtpurixjyss.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRydGlhZG53dHd0cHVyaXhqeXNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkyNDYzNzgsImV4cCI6MjA0NDgyMjM3OH0.IEoeD0HvsLVc4scOqkX6n6wGeY27HNeAwaftXPbZYi4');
 
@@ -33,23 +35,35 @@ export default function QuizPage() {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    if (score === 0) {
+        setRank("Muggle");
+    } else if (score <= 4) {
+        setRank("Goblin");
+    } else if (score <= 8) {
+        setRank("Mage");
+    } else {
+        setRank("Wizard");
+    }
     
     try {
-      const { data, error } = await supabase
-        .from('HalloweenLeaderBoard')
-        .insert([{ Name: name, Score: score }])
-        .select();
+        const { data, error } = await supabase
+            .from('HalloweenLeaderBoard')
+            .insert([{ Name: name, Score: score, Creature_Name: rank }])
+            .select();
+
+        if (error) throw error;
+
         setSubmitted(true);
-      if (error) throw error;
-      console.log('Inserted data:', data);
+        console.log('Inserted data:', data);
     } catch (error) {
-      console.error('Error inserting data:', error);
+        console.error('Error inserting data:', error);
+        alert('There was an error submitting your score. Please try again.');
     } 
-  };
+};
+
 
   return (
-    <div className="quiz-container">
-      <h1>Halloween Quiz</h1>
+    <div className={styles.quizContainer}>
       {isQuizFinished ? (
         <div className="results">
           <h2>Quiz finished!</h2>
@@ -59,9 +73,9 @@ export default function QuizPage() {
           <button onClick={restartQuiz}>Restart Quiz</button>
         </div>
       ) : (
-        <div className="question">
-          <h2>{currentQuestion.question}</h2>
-          <div className="options">
+        <div className={styles.results}>
+          <h3  className={styles.question}>{currentQuestion.question}</h3>
+          <div className={styles.options}>
             {currentQuestion.answer_options.map((option, index) => (
               <button key={index} onClick={() => handleAnswer(option)}>
                 {option}

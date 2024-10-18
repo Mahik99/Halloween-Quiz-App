@@ -1,0 +1,71 @@
+/* @import url(“https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap”); */
+
+.quizContainer {
+ font-family: “Caveat Brush”, cursive;
+ background-color: #1C0101;
+ color: #f00;
+ height: 100dvh;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.quizFinished {
+ font-size: 1rem;
+ margin-bottom: 2rem;
+}
+.question {
+ /* margin-top: 150px; */
+ padding: 10px;
+ font-size: 2rem;
+ margin-bottom: 1.5rem;
+ text-align: center;
+}
+.options {
+ display: flex;
+ flex-direction: column;
+ padding: 2rem 4rem;
+}
+.options button {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ background-color: #1C0101;
+ color: #f00;
+ border: 2px solid #f00;
+ border-radius: 1rem;
+ padding: 10px 20px;
+ margin-top: 20px;
+ font-size: 1.5rem;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ text-shadow: 0 0 5px #f00;
+}
+.options button:hover {
+ background-color: #f00;
+ color: #1C0101;
+ transform: scale(1.05);
+ box-shadow: 0 0 15px #f00;
+}
+.results h2 {
+ font-size: 3rem;
+ margin-bottom: 1rem;
+}
+.results p {
+ font-size: 2rem;
+ margin-bottom: 2rem;
+}
+.btn {
+ font-size: 1.5rem;
+ padding: 10px 20px;
+ border-radius: 1rem;
+ border: 2px solid #f00;
+ background-color: #1C0101;
+ color: #f00;
+ cursor: pointer;
+ transition: background-color 0.3s ease;
+}
+.btn:hover {
+ background-color: #f00;
+ color: #1C0101;
+}
