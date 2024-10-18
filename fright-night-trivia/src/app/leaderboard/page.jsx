@@ -34,6 +34,7 @@ export default function Home() {
 
   return (
     <div className="main">
+      <h1 className="title">Haunted Hall of High Scores</h1>
       <h1>{dbData.map((user, index) => (
         <div key={index} className="leaderBoard">
           <h1>Name: {user.Name}</h1>
