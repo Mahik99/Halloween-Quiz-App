@@ -1,121 +1,102 @@
 "use client";
-
 import React, { useState } from "react";
-import styles from "./page.module.css"; // Import styles (adjust if necessary)
-import NextButton from "../components/NextButton.jsx"; // Import your NextButton component
 
-const quizQuestions = [
-  // Changed this to quizQuestions
- {
-    question: "What was the original purpose of Halloween?",
-    options: [
-      "To scare away evil spirits",
-      "To celebrate harvest",
-      "To honor the dead",
-      "To give thanks",
+// Sample Quiz Data
+const quizData = [
+  {
+    question:
+      "What date is Halloween traditionally celebrated around the world?",
+    answer_options: [
+      "October 31st",
+      "October 30th",
+      "October 29th",
+      "November 1st",
     ],
-    correctAnswer: "To scare away evil spirits",
+    correct_answer: "October 31st",
+    level: "easy",
   },
   {
-    question: "Which horror movie character wears a hockey mask?",
-    options: [
-      "Freddy Krueger",
-      "Michael Myers",
-      "Jason Voorhees",
-      "Leatherface",
-    ],
-    correctAnswer: "Jason Voorhees",
+    question: "What vegetable do people often carve into a Jack-o'-Lantern?",
+    answer_options: ["Watermelon", "Pumpkin", "Butternut Squash", "Turnip"],
+    correct_answer: "Pumpkin",
+    level: "easy",
   },
-  // Add more questions as needed
+  {
+    question:
+      "What is the popular Halloween phrase that children say before receiving candy?",
+    answer_options: [
+      "Halloween Spooks",
+      "Boo!",
+      "Trick or Treat",
+      "Candy Please!",
+    ],
+    correct_answer: "Trick or Treat",
+    level: "easy",
+  },
+  {
+    question: "Who wrote the famous novel 'Frankenstein'?",
+    answer_options: [
+      "Edgar Allan Poe",
+      "Bram Stoker",
+      "H.P. Lovecraft",
+      "Mary Shelley",
+    ],
+    correct_answer: "Mary Shelley",
+    level: "easy",
+  },
 ];
 
-// export default function quizpage() {
-//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-//   const [score, setScore] = useState(0);
-//   const [selectedAnswer, setSelectedAnswer] = useState("");
-//   const [showScore, setShowScore] = useState(false);
-
-//   const handleAnswerSelect = (option) => {
-//     setSelectedAnswer(option);
-//   };
-
-//   const handleNextClick = () => {
-//     if (selectedAnswer === quizQuestions[currentQuestionIndex].correctAnswer) {
-//       setScore(score + 1);
-//     }
-
-//     if (currentQuestionIndex < quizQuestions.length - 1) {
-//       setCurrentQuestionIndex(currentQuestionIndex + 1);
-//       setSelectedAnswer("");
-//     } else {
-//       setShowScore(true);
-//     }
-//   };
-
-//   return (
-//     <div className={styles.quizContainer}>
-//       {!showScore ? (
-//         <div>
-//           <h2 className={styles.question}>
-//             {quizQuestions[currentQuestionIndex].question}
-//           </h2>
-//           <ul className={styles.optionsList}>
-//             {quizQuestions[currentQuestionIndex].options.map(
-//               (option, index) => (
-//                 <li
-//                   key={index}
-//                   className={`${styles.optionItem} ${
-//                     selectedAnswer === option ? styles.selected : ""
-//                   }`}
-//                   onClick={() => handleAnswerSelect(option)}
-//                 >
-//                   {option}
-//                 </li>
-//               )
-//             )}
-//           </ul>
-//           <NextButton onClick={handleNextClick} />
-//         </div>
-//       ) : (
-//         <div className={styles.scoreContainer}>
-//           <h2 className={styles.finalScore}>
-//             You scored {score} out of {quizQuestions.length}
-//           </h2>
-//           <button
-//             className={styles.restartButton}
-//             onClick={() => window.location.reload()}
-//           >
-//             Restart Quiz
-//           </button>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default function QuizPage();
-
-export default function QuizPage() {
+const QuizGame = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [showScore, setShowScore] = useState(false);
-  const handleAnswerSelect = (option) => {
-        setSelectedAnswer(option);
-      };
+  const [isQuizFinished, setIsQuizFinished] = useState(false);
 
-      const handleNextClick = () => {
-            if (selectedAnswer === quizQuestions[currentQuestionIndex].correctAnswer) {
-              setScore(score + 1);
-            }
-        
-            if (currentQuestionIndex < quizQuestions.length - 1) {
-              setCurrentQuestionIndex(currentQuestionIndex + 1);
-              setSelectedAnswer("");
-            } else {
-              setShowScore(true);
-            }
-          };
+  const currentQuestion = quizData[currentQuestionIndex];
+
+  const handleAnswer = (selectedAnswer) => {
+    if (selectedAnswer === currentQuestion.correct_answer) {
+      setScore(score + 1);
+    }
+
+    const nextQuestionIndex = currentQuestionIndex + 1;
+    if (nextQuestionIndex < quizData.length) {
+      setCurrentQuestionIndex(nextQuestionIndex);
+    } else {
+      setIsQuizFinished(true);
+    }
+  };
+
+  const restartQuiz = () => {
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setIsQuizFinished(false);
+  };
+
   return (
-    <div>hello</div>)
-  }
+    <div className="quiz-container">
+      <h1>Halloween Quiz</h1>
+      {isQuizFinished ? (
+        <div className="results">
+          <h2>Quiz finished!</h2>
+          <p>
+            Your score: {score}/{quizData.length}
+          </p>
+          <button onClick={restartQuiz}>Restart Quiz</button>
+        </div>
+      ) : (
+        <div className="question">
+          <h2>{currentQuestion.question}</h2>
+          <div className="options">
+            {currentQuestion.answer_options.map((option, index) => (
+              <button key={index} onClick={() => handleAnswer(option)}>
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default QuizGame;

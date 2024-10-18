@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import styles from "./Homepage.module.css";
 import SoundPlayer from "./sound.jsx";
+import Link from "next/link";
 
 export default function Homepage() {
   useEffect(() => {
@@ -29,10 +30,12 @@ export default function Homepage() {
         width={120}
         height={120}
       />
-      <button className={styles.button}>
-        <SoundPlayer />
-        <strong>Ready, Set, BOO!</strong>
-      </button>
+      <Link href="/QuizPage">
+        <button className={styles.button}>
+          <SoundPlayer />
+          <strong>Ready, Set, BOO!</strong>
+        </button>
+      </Link>
     </section>
   );
 }
