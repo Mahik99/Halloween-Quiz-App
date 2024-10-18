@@ -4,11 +4,10 @@ import Image from "next/image";
 import { createClient } from '@supabase/supabase-js'
 import { useEffect } from "react";
 import { useState } from "react";
-import styles from "./leaderboard.css";
+import "./leaderboard.css";
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient('https://drtiadnwtwtpurixjyss.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRydGlhZG53dHd0cHVyaXhqeXNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkyNDYzNzgsImV4cCI6MjA0NDgyMjM3OH0.IEoeD0HvsLVc4scOqkX6n6wGeY27HNeAwaftXPbZYi4')
-
 
 export default function Home() {
 
@@ -34,12 +33,12 @@ export default function Home() {
   },[]);
 
   return (
-    <div className={styles.main}>
+    <div className="main">
       <h1>{dbData.map((user, index) => (
-        <div key={index}>
-          <h1 className={styles.name}>{user.Name}</h1>
-          <h1 className={styles.score}>{user.Score}</h1>
-          <h1 className={styles.creature}>{user.Creature_Name}</h1>
+        <div key={index} className="leaderBoard">
+          <h1>Name: {user.Name}</h1>
+          <h1>Score: {user.Score}</h1>
+          <h1>Rank: {user.Creature_Name}</h1>
         </div>
       ))}
       </h1>
