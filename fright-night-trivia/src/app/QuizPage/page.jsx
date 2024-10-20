@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import questions from "./data.json"; // Make sure data.json is in the correct format
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import styles from "./page.module.css";
 
@@ -9,11 +9,14 @@ export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [rank, setRank] = useState('')
+  const [rank, setRank] = useState("");
 
-  const supabase = createClient('https://drtiadnwtwtpurixjyss.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRydGlhZG53dHd0cHVyaXhqeXNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkyNDYzNzgsImV4cCI6MjA0NDgyMjM3OH0.IEoeD0HvsLVc4scOqkX6n6wGeY27HNeAwaftXPbZYi4');
+  const supabase = createClient(
+    "https://drtiadnwtwtpurixjyss.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRydGlhZG53dHd0cHVyaXhqeXNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkyNDYzNzgsImV4cCI6MjA0NDgyMjM3OH0.IEoeD0HvsLVc4scOqkX6n6wGeY27HNeAwaftXPbZYi4"
+  );
 
   const currentQuestion = questions[currentQuestionIndex];
   const handleAnswer = (selectedAnswer) => {
@@ -36,45 +39,46 @@ export default function QuizPage() {
   const handleClick = async (e) => {
     e.preventDefault();
     if (score === 0) {
-        setRank("Muggle");
+      setRank("Muggle");
     } else if (score <= 4) {
-        setRank("Goblin");
+      setRank("Goblin");
     } else if (score <= 8) {
-        setRank("Mage");
+      setRank("Mage");
     } else {
-        setRank("Wizard");
+      setRank("Wizard");
     }
-    
+
     try {
-        const { data, error } = await supabase
-            .from('HalloweenLeaderBoard')
-            .insert([{ Name: name, Score: score, Creature_Name: rank }])
-            .select();
+      const { data, error } = await supabase
+        .from("HalloweenLeaderBoard")
+        .insert([{ Name: name, Score: score, Creature_Name: rank }])
+        .select();
 
-        if (error) throw error;
+      if (error) throw error;
 
-        setSubmitted(true);
-        console.log('Inserted data:', data);
+      setSubmitted(true);
+      console.log("Inserted data:", data);
     } catch (error) {
-        console.error('Error inserting data:', error);
-        alert('There was an error submitting your score. Please try again.');
-    } 
-};
-
+      console.error("Error inserting data:", error);
+      alert("There was an error submitting your score. Please try again.");
+    }
+  };
 
   return (
     <div className={styles.quizContainer}>
       {isQuizFinished ? (
-        <div className="results">
-          <h2>Quiz finished!</h2>
+        <div className={styles.quizFinished}>
+          <h2>The Haunted Quiz Has Come to an End!</h2>
           <p>
             Your score: {score}/{questions.length}
           </p>
-          <button onClick={restartQuiz}>Restart Quiz</button>
+          <button className={styles.restartBtn} onClick={restartQuiz}>
+            Restart Quiz
+          </button>
         </div>
       ) : (
         <div className={styles.results}>
-          <h3  className={styles.question}>{currentQuestion.question}</h3>
+          <h3 className={styles.question}>{currentQuestion.question}</h3>
           <div className={styles.options}>
             {currentQuestion.answer_options.map((option, index) => (
               <button key={index} onClick={() => handleAnswer(option)}>
@@ -84,27 +88,33 @@ export default function QuizPage() {
           </div>
         </div>
       )}
-            <div className="form">
-        <form onSubmit={handleClick}>
-          <label>
-            Name:
-            <input 
-              type="text" 
-              name="name" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
-              required 
-            />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      {currentQuestionIndex === questions.length - 1 && (
+        <div className={styles.form}>
+          <form onSubmit={handleClick}>
+            <label className={styles.inputLabel}>
+              Name:
+              <input
+                className={styles.inputField}
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <input
+                className={styles.submitButton}
+                type="submit"
+                value="Submit"
+              />
+            </label>
+          </form>
+        </div>
+      )}
       {submitted ? (
-  <Link href="/leaderboard">
-    <button>View Leaderboard</button>
-  </Link>
-    ) : null}
+        <Link href="/leaderboard">
+          <button className={styles.leaderboardBtn}>View Leaderboard</button>
+        </Link>
+      ) : null}
     </div>
-
-    );
+  );
 }
